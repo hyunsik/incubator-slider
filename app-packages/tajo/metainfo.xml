@@ -19,23 +19,29 @@
 <metainfo>
   <schemaVersion>2.0</schemaVersion>
   <application>
-    <name>MEMCACHED</name>
-    <comment>Memcache is a network accessible key/value storage system, often used as a distributed cache.</comment>
-    <version>1.0.0</version>
+    <name>Tajo</name>
+    <comment>Tajo is a data warehouse system that can run on HDFS.</comment>
+    <version>0.9.1-SNAPSHOT</version>
     <exportedConfigs>None</exportedConfigs>
 
     <components>
+
       <component>
-        <name>MEMCACHED</name>
+        <name>master</name>
         <category>MASTER</category>
-        <componentExports>
-          <componentExport>
-            <name>host_port</name>
-            <value>${THIS_HOST}:${site.global.listen_port}</value>
-          </componentExport>
-        </componentExports>
+        <minInstanceCount>1</minInstanceCount>
         <commandScript>
-          <script>scripts/memcached.py</script>
+          <script>scripts/tajo_master.py</script>
+          <scriptType>PYTHON</scriptType>
+        </commandScript>
+      </component>
+
+      <component>
+        <name>worker</name>
+        <category>SLAVE</category>
+        <minInstanceCount>1</minInstanceCount>
+        <commandScript>
+          <script>scripts/tajo_worker.py</script>
           <scriptType>PYTHON</scriptType>
         </commandScript>
       </component>
@@ -47,11 +53,34 @@
         <packages>
           <package>
             <type>tarball</type>
-            <name>files/jmemcached-1.0.0.tar</name>
+            <name>files/tajo-${pkg.version}.tar.gz</name>
           </package>
         </packages>
       </osSpecific>
     </osSpecifics>
+
+    <configFiles>
+      <configFile>
+        <type>xml</type>
+        <fileName>tajo-site.xml</fileName>
+        <dictionaryName>tajo-site</dictionaryName>
+      </configFile>
+      <configFile>
+        <type>xml</type>
+        <fileName>catalog-site.xml</fileName>
+        <dictionaryName>catalog-site</dictionaryName>
+      </configFile>
+      <configFile>
+        <type>env</type>
+        <fileName>tajo-env.sh</fileName>
+        <dictionaryName>tajo-env</dictionaryName>
+      </configFile>
+      <configFile>
+        <type>env</type>
+        <fileName>tajo-log4j.properties</fileName>
+        <dictionaryName>tajo-log4j</dictionaryName>
+      </configFile>
+    </configFiles>
 
   </application>
 </metainfo>
