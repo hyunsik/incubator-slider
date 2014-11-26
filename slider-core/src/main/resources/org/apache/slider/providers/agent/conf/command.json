@@ -68,7 +68,7 @@
       "hbase_user": "hbase",
       "hbase_log_dir": "/var/log/hbase",
       "tajo_user": "tajo",
-      "tajo_version": "0.9.0"
+      "tajo_version": "0.9.1-SNAPSHOT"
     },
     "hdfs-site": {
       "dfs.namenode.checkpoint.period": "21600",

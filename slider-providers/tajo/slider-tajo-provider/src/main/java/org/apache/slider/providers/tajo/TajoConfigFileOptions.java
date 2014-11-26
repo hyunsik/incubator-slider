@@ -27,7 +27,7 @@ package org.apache.slider.providers.tajo;/*
 public interface TajoConfigFileOptions {
 
   String KEY_HBASE_CLUSTER_DISTRIBUTED = "hbase.cluster.distributed";
-   String KEY_HBASE_ROOTDIR = "hbase.rootdir";
+  String KEY_HBASE_ROOTDIR = "hbase.rootdir";
 
   String KEY_ZOOKEEPER_QUORUM = "hbase.zookeeper.quorum";
   //HConstants.ZOOKEEPER_QUORUM;
